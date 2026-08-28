@@ -1,0 +1,2 @@
+# buatkamu
+di baca
