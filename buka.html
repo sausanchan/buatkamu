@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Login Kucing Putih - Biru Muda</title>
+  <title>Kejutan Untuk Kamu 💙</title>
   <style>
     * {
       margin: 0;
@@ -267,11 +267,11 @@
     <form id="formLogin">
   <div class="input-field">
     <input 
-      type="password" 
-      id="password"
-      placeholder="Password" 
-      required 
-      autocomplete="off">
+  type="text" 
+  id="kode"
+  placeholder="Masukkan kode rahasia"
+  required
+  autocomplete="off">
   </div>
 
   <button type="submit" class="btn-login">
@@ -287,15 +287,13 @@
 document.getElementById("formLogin").addEventListener("submit", function(event) {
     event.preventDefault();
 
-    const password = document.getElementById("password").value;
+    const kode = document.getElementById("kode").value;
+    const kodeBenar = "sancit";
 
-    // GANTI dengan password yang diinginkan
-    const passwordBenar = "sancit";
-
-    if (password === passwordBenar) {
+    if (kode === kodeBenar) {
         window.location.href = "index.html";
     } else {
-        alert("Password salah 🥺");
+        alert("Kode salah 🥺");
     }
 });
 </script>
