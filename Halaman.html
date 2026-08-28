@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teruntuk Pacarku</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+
+      min-height: 100vh;
+      height: 100vh;
+
+      background: linear-gradient(180deg, #bae6fd 0%, #ffffff 100%);
+
+      /* Tidak ada scroll */
+      overflow: hidden;
+
+      position: relative;
+      padding-top: 100px;
+      padding-bottom: 0;
+    }
+
+    /* =========================
+       KELOPAK BUNGA JATUH
+       ========================= */
+
+    .sakura-container {
+      position: absolute;
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    .petal {
+      position: absolute;
+
+      background: #7dd3fc;
+      border-radius: 150% 0 150% 0;
+
+      opacity: 0.7;
+
+      animation: fall linear infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        opacity: 0.8;
+        top: -10%;
+        transform: translateX(0) rotate(0deg);
+      }
+
+      100% {
+        opacity: 0.2;
+        top: 110%;
+        transform: translateX(100px) rotate(360deg);
+      }
+    }
+
+    .petal:nth-child(1) {
+      left: 10%;
+      width: 12px;
+      height: 12px;
+      animation-duration: 7s;
+      animation-delay: 0s;
+    }
+
+    .petal:nth-child(2) {
+      left: 20%;
+      width: 8px;
+      height: 8px;
+      animation-duration: 10s;
+      animation-delay: 2s;
+    }
+
+    .petal:nth-child(3) {
+      left: 35%;
+      width: 10px;
+      height: 10px;
+      animation-duration: 8s;
+      animation-delay: 4s;
+    }
+
+    .petal:nth-child(4) {
+      left: 50%;
+      width: 14px;
+      height: 14px;
+      animation-duration: 6s;
+      animation-delay: 1s;
+    }
+
+    .petal:nth-child(5) {
+      left: 65%;
+      width: 11px;
+      height: 11px;
+      animation-duration: 9s;
+      animation-delay: 3s;
+    }
+
+    .petal:nth-child(6) {
+      left: 80%;
+      width: 9px;
+      height: 9px;
+      animation-duration: 11s;
+      animation-delay: 5s;
+    }
+
+    .petal:nth-child(7) {
+      left: 90%;
+      width: 13px;
+      height: 13px;
+      animation-duration: 7s;
+      animation-delay: 2s;
+    }
+
+
+    /* =========================
+       JUDUL
+       ========================= */
+
+    h3 {
+      position: absolute;
+
+      top: 40px;
+      left: 50%;
+
+      transform: translateX(-50%);
+
+      color: #2979a1;
+
+      font-size: 18px;
+      font-weight: 600;
+
+      z-index: 3;
+
+      white-space: nowrap;
+    }
+
+
+    /* =========================
+       TEKS
+       ========================= */
+
+    p {
+      color: #0284c7;
+
+      margin-bottom: 15px;
+
+      text-align: left;
+
+      max-width: 600px;
+      width: 90%;
+
+      line-height: 1.6;
+
+      z-index: 3;
+    }
+
+    .focus-text {
+      text-align: left;
+
+      max-width: 600px;
+      width: 90%;
+
+      line-height: 1.6;
+    }
+
+
+    /* =========================
+       TOMBOL
+       ========================= */
+
+    button {
+      background: #38bdf8;
+
+      color: white;
+
+      border: none;
+
+      border-radius: 10%;
+
+      width: 31px;
+      height: 31px;
+
+      font-size: 22px;
+
+      cursor: pointer;
+
+      box-shadow:
+        0 4px 10px rgba(56, 189, 248, 0.3);
+
+      transition: 0.3s;
+
+      z-index: 10;
+    }
+
+    button:hover {
+      background: #0284c7;
+
+      transform: translateX(3px);
+    }
+
+
+    /* =========================
+       FOTO KANAN
+       ========================= */
+
+    .ribbon-right {
+      position: fixed;
+
+      right: 200px;
+      top: 0;
+
+      width: 45px;
+      height: 180px;
+
+      z-index: 4;
+    }
+
+    .ribbon-string {
+      position: absolute;
+
+      top: 0;
+      left: 60px;
+
+      width: 4px;
+      height: 145px;
+
+      background: #38bdf8;
+
+      border-radius: 10px;
+
+      box-shadow:
+        0 2px 6px rgba(56, 189, 248, 0.3);
+    }
+
+    .ribbon-bow {
+      position: absolute;
+
+      top: 130px;
+      left: 7px;
+
+      font-size: 35px;
+
+      transform: rotate(10deg);
+
+      filter:
+        drop-shadow(
+          0 3px 4px rgba(0,0,0,0.12)
+        );
+    }
+
+    .photo-box {
+      position: absolute;
+
+      z-index: 6;
+
+      width: 200px;
+      height: 300px;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      border: 4px solid white;
+
+      box-shadow:
+        0 8px 20px rgba(56, 189, 248, 0.25);
+
+      right: -130px;
+      top: 40px;
+
+      transform-origin: top center;
+
+      animation:
+        goyangKanan 3s ease-in-out infinite;
+    }
+
+    .photo-box img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      border-radius: 20px;
+    }
+
+
+    /* =========================
+       FOTO KIRI
+       ========================= */
+
+    .ribbon-left {
+      position: fixed;
+
+      left: 150px;
+      top: 0;
+
+      width: 45px;
+      height: 180px;
+
+      z-index: 4;
+    }
+
+    .ribbon-string-left {
+      position: absolute;
+
+      top: 0;
+      left: -8px;
+
+      width: 4px;
+      height: 145px;
+
+      background: #38bdf8;
+
+      border-radius: 10px;
+
+      box-shadow:
+        0 2px 6px rgba(56, 189, 248, 0.3);
+    }
+
+    .ribbon-bow-left {
+      position: absolute;
+
+      top: 130px;
+      left: 7px;
+
+      font-size: 35px;
+
+      transform: rotate(-10deg);
+
+      filter:
+        drop-shadow(
+          0 3px 4px rgba(0,0,0,0.12)
+        );
+    }
+
+    .photo-box-left {
+      position: absolute;
+
+      z-index: 6;
+
+      width: 200px;
+      height: 300px;
+
+      border-radius: 20px;
+
+      overflow: hidden;
+
+      border: 4px solid white;
+
+      box-shadow:
+        0 8px 20px rgba(56, 189, 248, 0.25);
+
+      left: -100px;
+      top: 40px;
+
+      transform-origin: top center;
+
+      animation:
+        goyangKiri 3s ease-in-out infinite;
+    }
+
+    .photo-box-left img {
+      width: 100%;
+      height: 100%;
+
+      object-fit: cover;
+
+      display: block;
+
+      border-radius: 20px;
+    }
+
+
+    /* =========================
+       ANIMASI FOTO KANAN
+       ========================= */
+
+    @keyframes goyangKanan {
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(3deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      75% {
+        transform: rotate(-3deg);
+      }
+    }
+
+
+    /* =========================
+       ANIMASI FOTO KIRI
+       ========================= */
+
+    @keyframes goyangKiri {
+      0%,
+      100% {
+        transform: rotate(0deg);
+      }
+
+      25% {
+        transform: rotate(-3deg);
+      }
+
+      50% {
+        transform: rotate(0deg);
+      }
+
+      75% {
+        transform: rotate(3deg);
+      }
+    }
+
+
+    /* =========================
+       TAMAT
+       ========================= */
+
+    h2 {
+      color: #0284c7;
+
+      margin-top: 5px;
+
+      font-size: 20px;
+
+      z-index: 5;
+    }
+
+
+    /* =========================
+       RESPONSIVE HP
+       ========================= */
+
+    @media (max-width: 768px) {
+
+      body {
+        padding-top: 90px;
+      }
+
+      h3 {
+        top: 30px;
+        font-size: 16px;
+      }
+
+      p {
+        width: 82%;
+        font-size: 12px;
+        line-height: 1.45;
+        margin-bottom: 10px;
+      }
+
+      .ribbon-left {
+        left: 45px;
+      }
+
+      .ribbon-right {
+        right: 45px;
+      }
+
+      .photo-box,
+      .photo-box-left {
+        width: 110px;
+        height: 165px;
+      }
+
+      .photo-box {
+        right: -70px;
+      }
+
+      .photo-box-left {
+        left: -55px;
+      }
+
+      .ribbon-string,
+      .ribbon-string-left {
+        height: 120px;
+      }
+
+      h2 {
+        font-size: 16px;
+      }
+    }
+  </style>
+
+  <style>
+  p {
+    color: #0284c7;
+    margin-bottom: 18px;
+    line-height: 1.7;
+    
+    /* Animasi awal */
+    opacity: 0;
+    transform: translateY(30px);
+    animation: muncul 1s ease forwards;
+  }
+
+  /* Paragraf kedua muncul setelah paragraf pertama */
+  p:nth-of-type(2) {
+    animation-delay: 1s;
+  }
+
+  /* Paragraf ketiga muncul setelah paragraf kedua */
+  p:nth-of-type(3) {
+    animation-delay: 2s;
+  }
+
+  .focus-text {
+    color: #ff69b4;
+    font-weight: 600;
+  }
+
+  @keyframes muncul {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+
+<p>
+  Aku pingin hari senin. Ntah senin kapan aku pingin break dulu
+  sayang menjalani hubungan kita. Kamu Tau kalau kamu sama aku
+  kuliah apa lagi semakin naik semester bakal susah pelajarannya kan?
+</p>
+
+<p class="focus-text">
+  Aku pingin fokus kuliah dulu sayang Karena aku nggak mau nilaiku
+  di bawah rata rata.
+</p>
+
+<p>
+  kamu taukan jurusanku teknik Informatika pasti sibuk ngoding,
+  nggak ngurusin kamu terus jadinya sayang. kalau suatu saat ada
+  yang suka sama aku terus ngajak pacaran aku tolak yank soalnya
+  aku janji jugak ke diriku kalau ada yang suka ama aku dan ngajak
+  pacaran kalau aku nggak mau ngecewain diriku lagi, orang lain,
+  Orang tuaku. soalnya aku sering ngecewain...
+</p>
+</head>
+
+<body>
+
+  <!-- =========================
+       KELOPAK BUNGA
+       ========================= -->
+
+  <div class="sakura-container">
+
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+    <div class="petal"></div>
+
+  </div>
+
+
+  <!-- =========================
+       JUDUL
+       ========================= -->
+
+  <h3>Teruntuk pacarku</h3>
+
+
+  <!-- =========================
+       ISI PESAN
+       ========================= -->
+
+ 
+  <!-- =========================
+       FOTO KANAN
+       ========================= -->
+
+  <div class="ribbon-right">
+
+    <div class="ribbon-string"></div>
+
+    <div class="photo-box">
+
+      <img
+        src="chit.jpeg"
+        alt="Foto kanan"
+      >
+
+    </div>
+
+  </div>
+
+
+  <!-- =========================
+       FOTO KIRI
+       ========================= -->
+
+  <div class="ribbon-left">
+
+    <div class="ribbon-string-left"></div>
+
+    <div class="photo-box-left">
+
+      <img
+        src="sancil.png"
+        alt="Foto kiri"
+      >
+
+    </div>
+
+  </div>
+
+<h1 class="love-title">I LOVE YOU MORE</h1>
+
+<style>
+  .love-title {
+    color: pink;
+    opacity: 0;
+    transform: scale(0.5) translateY(-20px);
+    animation: loveMuncul 1.2s ease-out forwards;
+  }
+
+  @keyframes loveMuncul {
+    0% {
+      opacity: 0;
+      transform: scale(0.5) translateY(-20px);
+    }
+
+    60% {
+      transform: scale(1.1) translateY(0);
+    }
+
+    100% {
+      opacity: 1;
+      transform: scale(1) translateY(0);
+    }
+  }
+</style>
+  <!-- =========================
+       TAMAT
+       ========================= -->
+
+  <h2>Tamat</h2>
+
+</body>
+</html>
